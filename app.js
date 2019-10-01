@@ -1,4 +1,4 @@
-var express        = require("express"),
+const express        = require("express"),
     app            = express(),
     bodyParser     = require("body-parser"),
     mongoose       = require("mongoose"),
@@ -8,15 +8,14 @@ var express        = require("express"),
     methodOverride = require("method-override"),
     flash          = require("connect-flash");
 // requiring routes
-var commentRoutes    = require("./routes/comments"),
+const commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes      = require("./routes/index");
 
 
-console.log(process.env.DATABASEURL);
-//"mongodb://localhost:27017/yelp_camp"
-//'mongodb+srv://achavz97:Alexturtle1@cluster0-d4i6e.mongodb.net/test?retryWrites=true&w=majority'
-mongoose.connect(process.env.DATABASEURL, {
+var url = process.env.DATABASEURL || "mongodb://localhost:27017/yelp_camp";
+
+mongoose.connect(url, {
 	useNewUrlParser: true,
 	useCreateIndex: true
 });
